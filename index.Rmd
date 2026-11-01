@@ -1,0 +1,21 @@
+
+---
+title: "Home"
+---
+
+# Welcome!
+
+I am a Master's student in Biostatistics at Columbia University Mailman School of Public Health.
+
+My academic interests include statistical learning, data science, neuroimaging, and biomedical research.
+
+## About Me
+
+I received my undergraduate education in Data Science and Big Data Technology at Shanghai University of Finance and Economics.
+
+I enjoy using R and Python to explore real-world datasets and solve applied statistical problems.
+
+## Explore My Website
+
+- [Academic and Professional Experience](resume.html)
+- [Interactive Data Dashboard](dashboard.html)

@@ -1,0 +1,58 @@
+
+---
+title: "Resume"
+---
+
+# Yijia Wang
+
+**Biostatistics | Data Science | Machine Learning**
+
+Email: [yw4886@cumc.columbia.edu](mailto:yw4886@cumc.columbia.edu)
+---
+
+## Education
+
+**Columbia University Mailman School of Public Health**  
+M.S. in Biostatistics | 2026–Present
+
+**Shanghai University of Finance and Economics**  
+B.S. in Data Science and Big Data Technology | 2022–2026
+
+## Research Experience
+
+### Neural Mechanisms of Fear Extinction in Memory
+
+**Research Intern | Fudan University, Li Weiguang Lab**  
+*Apr 2025 – Aug 2025*
+
+- Analyzed behavioral data from 11 sets of mouse experiments using bootstrap resampling and Mahalanobis distance.
+- Developed a Leaky Integrate-and-Fire (LIF) neural network incorporating STDP learning rules to simulate neuronal dynamics.
+
+### Shanghai Investor Confidence Index (SICI)
+
+**Data Science Lead | Shanghai University of Finance and Economics**  
+*May 2025 – Sep 2025*
+
+- Processed and analyzed over 30,000 market data records using Python.
+- Applied BERT, SnowNLP, PCA, and Dynamic Factor Modeling to develop sentiment indicators and visualization dashboards.
+
+## Professional Experience
+
+### WuXi Biologics
+
+**Algorithm Engineer Intern | Shanghai, China**  
+*Aug 2025 – May 2026*
+
+- Developed machine learning optimization methods for protein purification processes, balancing yield, purity, cost, and biological constraints.
+- Built a retrieval-augmented generation (RAG) system using PostgreSQL, pgvector, and hybrid retrieval, reducing average information retrieval time by 83%.
+
+## Technical Skills
+
+**Programming:** R, Python, SQL, MATLAB, Git
+
+**Statistics:** Statistical Inference, Regression, Bootstrap, PCA, Clustering
+
+**Machine Learning:** Random Forest, Ensemble Learning, SMOTE, BERT
+
+**Tools:** Pandas, NumPy, Scikit-learn, PostgreSQL
+
