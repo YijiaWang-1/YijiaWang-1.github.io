@@ -1,6 +1,5 @@
-
 ---
-title: "New York Weather Dashboard"
+title: "NY Weather Dashboard | 2000–2010"
 output:
   flexdashboard::flex_dashboard:
     orientation: columns
@@ -93,6 +92,8 @@ Column {data-width=650}
 -----------------------------------------------------------------------
 
 ### Monthly Average Maximum Temperature
+
+<small>Selected NY NOAA station, 2000–2010. Temperature: °C; precipitation: mm.</small>
 
 ```{r temperature-line}
 monthly_temp |>
