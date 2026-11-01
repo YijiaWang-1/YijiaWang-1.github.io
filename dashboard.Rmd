@@ -1,6 +1,6 @@
 
 ---
-title: "NY NOAA Interactive Dashboard"
+title: "New York Weather Dashboard"
 output:
   flexdashboard::flex_dashboard:
     orientation: columns
@@ -14,26 +14,149 @@ library(plotly)
 library(flexdashboard)
 ```
 
+```{r data-preparation, include=FALSE}
+data("ny_noaa")
+
+weather =
+  ny_noaa |>
+  filter(
+    date >= as.Date("2000-01-01"),
+    date <= as.Date("2010-12-31")
+  )
+
+selected_station =
+  weather |>
+  group_by(id) |>
+  summarize(
+    n_complete = sum(!is.na(tmax) & !is.na(prcp)),
+    .groups = "drop"
+  ) |>
+  slice_max(n_complete, n = 1, with_ties = FALSE) |>
+  pull(id)
+
+weather =
+  weather |>
+  filter(id == selected_station) |>
+  mutate(
+    tmax_c = as.numeric(tmax) / 10,
+    prcp_mm = as.numeric(prcp) / 10,
+    month = lubridate::month(date),
+    month_name = month.abb[month],
+    season = case_when(
+      month %in% c(12, 1, 2) ~ "Winter",
+      month %in% c(3, 4, 5) ~ "Spring",
+      month %in% c(6, 7, 8) ~ "Summer",
+      TRUE ~ "Fall"
+    ),
+    season = factor(
+      season,
+      levels = c("Winter", "Spring", "Summer", "Fall")
+    )
+  )
+
+monthly_temp =
+  weather |>
+  filter(!is.na(tmax_c)) |>
+  group_by(month) |>
+  summarize(
+    avg_temp = mean(tmax_c),
+    .groups = "drop"
+  ) |>
+  mutate(month_name = month.abb[month])
+
+monthly_prcp =
+  weather |>
+  filter(!is.na(prcp_mm)) |>
+  group_by(month) |>
+  summarize(
+    avg_prcp = mean(prcp_mm),
+    .groups = "drop"
+  ) |>
+  mutate(month_name = month.abb[month])
+
+seasonal_temp =
+  weather |>
+  filter(!is.na(tmax_c))
+```
+
 Column {data-width=650}
 -----------------------------------------------------------------------
 
-### Temperature Trends
+### Monthly Average Maximum Temperature
 
-```{r}
-
+```{r temperature-line}
+monthly_temp |>
+  plot_ly(
+    x = ~month_name,
+    y = ~avg_temp,
+    type = "scatter",
+    mode = "lines+markers",
+    line = list(color = "#2878B5", width = 3),
+    marker = list(size = 8),
+    hovertemplate = paste(
+      "%{x}",
+      "<br>Average max temp: %{y:.1f} °C",
+      "<extra></extra>"
+    )
+  ) |>
+  layout(
+    xaxis = list(title = "Month"),
+    yaxis = list(title = "Temperature (°C)"),
+    margin = list(b = 65, l = 65)
+  )
 ```
 
 Column {data-width=350}
 -----------------------------------------------------------------------
 
-### Precipitation Patterns
+### Average Daily Precipitation by Month
 
-```{r}
-
+```{r precipitation-bar}
+monthly_prcp |>
+  plot_ly(
+    x = ~month_name,
+    y = ~avg_prcp,
+    type = "bar",
+    marker = list(color = "#46A6A0"),
+    hovertemplate = paste(
+      "%{x}",
+      "<br>Average daily precipitation: %{y:.2f} mm",
+      "<extra></extra>"
+    )
+  ) |>
+  layout(
+    xaxis = list(title = "Month"),
+    yaxis = list(title = "Precipitation (mm)"),
+    margin = list(b = 55, l = 65)
+  )
 ```
 
-### Temperature Distribution
+### Daily Maximum Temperature by Season
 
-```{r}
-
+```{r temperature-box}
+seasonal_temp |>
+  plot_ly(
+    x = ~season,
+    y = ~tmax_c,
+    type = "box",
+    color = ~season,
+    colors = c(
+      "#4575B4",
+      "#66A182",
+      "#E9A23B",
+      "#C86B65"
+    ),
+    boxpoints = FALSE,
+    showlegend = FALSE,
+    hovertemplate = paste(
+      "%{x}",
+      "<br>Temperature: %{y:.1f} °C",
+      "<extra></extra>"
+    )
+  ) |>
+  layout(
+    xaxis = list(title = "Season"),
+    yaxis = list(title = "Maximum Temperature (°C)"),
+    margin = list(b = 55, l = 65)
+  )
 ```
