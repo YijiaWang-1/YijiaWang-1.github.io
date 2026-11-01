@@ -1,15 +1,25 @@
-
 ---
 title: "Home"
 ---
 
 # Welcome!
 
-I am a Master's student in Biostatistics at Columbia University Mailman School of Public Health.
+<div style="display:flex; align-items:center; gap:35px; flex-wrap:wrap; margin:25px 0;">
 
-My academic interests include statistical learning, data science, neuroimaging, and biomedical research.
+<img src="images/profile.jpg" style="width:190px; height:190px; object-fit:cover; border-radius:12px;">
 
-<img src="images/profile.jpg" style="width:180px; height:180px; object-fit:cover; border-radius:50%;">
+<div style="flex:1; min-width:260px;">
+
+### Yijia Wang
+
+**M.S. in Biostatistics | Columbia University**
+
+I am a master's student at Columbia University Mailman School of Public Health.
+
+My interests include statistical learning, data science, machine learning, and biomedical research.
+
+</div>
+</div>
 
 ## About Me
 

@@ -62,7 +62,12 @@ monthly_temp =
     avg_temp = mean(tmax_c),
     .groups = "drop"
   ) |>
-  mutate(month_name = month.abb[month])
+  mutate(
+    month_name = factor(
+      month.abb[month],
+      levels = month.abb
+    )
+  )
 
 monthly_prcp =
   weather |>
@@ -72,7 +77,12 @@ monthly_prcp =
     avg_prcp = mean(prcp_mm),
     .groups = "drop"
   ) |>
-  mutate(month_name = month.abb[month])
+  mutate(
+    month_name = factor(
+      month.abb[month],
+      levels = month.abb
+    )
+  )
 
 seasonal_temp =
   weather |>
@@ -100,7 +110,11 @@ monthly_temp |>
     )
   ) |>
   layout(
-    xaxis = list(title = "Month"),
+    xaxis = list(
+      title = "Month",
+      categoryorder = "array",
+      categoryarray = month.abb
+    ),
     yaxis = list(title = "Temperature (°C)"),
     margin = list(b = 65, l = 65)
   )
@@ -125,7 +139,11 @@ monthly_prcp |>
     )
   ) |>
   layout(
-    xaxis = list(title = "Month"),
+    xaxis = list(
+      title = "Month",
+      categoryorder = "array",
+      categoryarray = month.abb
+    ),
     yaxis = list(title = "Precipitation (mm)"),
     margin = list(b = 55, l = 65)
   )
