@@ -9,6 +9,8 @@ I am a Master's student in Biostatistics at Columbia University Mailman School o
 
 My academic interests include statistical learning, data science, neuroimaging, and biomedical research.
 
+<img src="images/profile.jpg" style="width:180px; height:180px; object-fit:cover; border-radius:50%;">
+
 ## About Me
 
 I received my undergraduate education in Data Science and Big Data Technology at Shanghai University of Finance and Economics.
